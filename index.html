@@ -1,201 +1,247 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>magzi.z</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
-   :root {
-  --bg: #474444;     
-  --text: #fff5c3;  
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-}
-
-/* Header menempel di atas layar */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 5vw;
-  background: rgba(70, 68, 66, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-.site-header .logo {
-  font-family: 'Instrument Serif', serif;
-  font-size: 26px;
-  color: var(--text);
-  text-decoration: none;
-}
-.site-header nav a {
-  color: var(--text);
-  text-decoration: none;
-  margin-left: 28px;
-  font-size: 14px;
-  opacity: 0.7;
-}
-.site-header nav a:hover { opacity: 1; }
-
-/* Hero layar penuh */
-.hero {
-  position: relative;
-  overflow: hidden;
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  padding: 0 5vw;
-}
-
-.hero-text {
-  position: relative;
-  z-index: 2;
-}
-.hero h1 {
-  font-size: clamp(40px, 7vw, 88px);
-  letter-spacing: 2px;
-  line-height: 1.05;
-}
-.hero p {
-  margin-top: 16px;
-  max-width: 420px;
-  opacity: 0.85;
-}
-
-/* Foto rasio 3:4, memudar ke kiri dan ke bawah */
-.hero-img {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  width: auto;
-  max-width: 70%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  z-index: 1;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%),
-                      linear-gradient(to bottom, black 80%, transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, transparent 0%, black 50%),
-              linear-gradient(to bottom, black 80%, transparent 100%);
-  mask-composite: intersect;
-}
-
-@media (max-width: 700px) {
-  .hero-img {
-    width: 100%;
-    max-width: 100%;
-    aspect-ratio: auto;
-    opacity: 0.3;
-  }
-}
-}
-
-    /* Section umum */
-    section { padding: 80px 5vw; border-top: 1px solid var(--line); }
-    section h2 {
-      font-family: 'Instrument Serif', serif;
-      font-weight: 400;
-      font-size: 36px;
-      margin-bottom: 32px;
+    /* ---------- Warna & dasar ---------- */
+    :root {
+      --bg: #474444;
+      --text: #FFF5C3;
+      --muted: rgba(255, 245, 195, 0.65);
+      --line: rgba(255, 245, 195, 0.18);
+      --placeholder: #3b3939;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Inter', Arial, sans-serif;
     }
 
-    /* Grid Projects */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
+
+    /* ---------- Header (menempel di atas) ---------- */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5vw;
+      background: rgba(71, 68, 68, 0.65);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+    .logo {
+      font-family: var(--serif);
+      font-size: 26px;
+      text-decoration: none;
+    }
+    .site-header nav a {
+      margin-left: 28px;
+      font-size: 15px;
+      text-decoration: none;
+      opacity: 0.7;
+    }
+    .site-header nav a:hover { opacity: 1; }
+
+    /* ---------- Hero layar penuh ---------- */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 0 5vw;
+    }
+    .hero-text {
+      position: relative;
+      z-index: 2;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(52px, 9vw, 128px);
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    .hero p {
+      margin-top: 20px;
+      max-width: 380px;
+      color: var(--muted);
+    }
+
+    /* Foto rasio 3:4, memudar ke kiri dan ke bawah */
+    .hero-img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      width: auto;
+      max-width: 70%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      z-index: 1;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%),
+                          linear-gradient(to bottom, black 80%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image: linear-gradient(to right, transparent 0%, black 50%),
+                  linear-gradient(to bottom, black 80%, transparent 100%);
+      mask-composite: intersect;
+    }
+
+    /* ---------- Section umum ---------- */
+    section.block {
+      padding: 100px 5vw;
+      border-top: 1px solid var(--line);
+    }
+    section.block h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.1;
+      margin-bottom: 36px;
+    }
+
+    /* ---------- About ---------- */
+    .about-text {
+      max-width: 60ch;
+      color: var(--muted);
+    }
+
+    /* ---------- Projects: 3 per baris ---------- */
     .grid {
       display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-@media (max-width: 900px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 600px) {
-  .grid { grid-template-columns: 1fr; }
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
     }
-    .thumb {
+    .card .thumb {
+      display: block;
+      width: 100%;
       aspect-ratio: 3 / 4;
-  background: #222;
-  border-radius: 6px;
-  width: 100%;
-  object-fit: cover;
-  display: block;
+      object-fit: cover;
+      object-position: center;   /* geser fokus foto di sini, mis. top / 30% 70% */
+      background: var(--placeholder);
+      border-radius: 4px;
     }
-    .card h3 { font-weight: 500; margin-top: 12px; }
-    .card span { color: var(--muted); font-size: 14px; }
+    .card h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 24px;
+      margin-top: 14px;
+    }
+    .card span {
+      color: var(--muted);
+      font-size: 14px;
+    }
 
-    /* Footer */
+    /* ---------- Contact ---------- */
+    .contact-link {
+      font-family: var(--serif);
+      font-size: clamp(26px, 4vw, 44px);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+    }
+    .contact-link:hover { border-bottom-color: var(--text); }
+
     footer {
       padding: 40px 5vw;
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 14px;
     }
-    footer a { color: var(--text); }
+
+    /* ---------- Responsif ---------- */
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .site-header nav a { margin-left: 18px; }
+      .hero-img {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: auto;
+        opacity: 0.3;
+      }
+      section.block { padding: 72px 5vw; }
+    }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
+
 <body>
 
-  <header>
-    <div class="logo">MAGZI.z</div>
+  <header class="site-header">
+    <a href="#top" class="logo">magzi.z</a>
     <nav>
-      <a href="#Projects">Projects</a>
-      <a href="#About">About</a>
-      <a href="#Contact">Contact</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <div class="hero">
-    <h1>PORTFOLIO</h1>
-    <p>A clean page, a first line, a final touch.</p>
-  </div>
-   <img class="hero-img" src="hero.jpg" alt="Foto utama">
-</div>
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-text">
+        <h1>PORTFOLIO</h1>
+        <p>A clean page, a first line, a final touch.</p>
+      </div>
+      <img class="hero-img" src="hero.jpg" alt="Pencil sketch of a hand">
+    </section>
 
-  <section id="Projects">
-    <h2>Projects</h2>
-    <div class="grid">
-     <div class="card"><img class="thumb" src="images/proyek-1.jpg" alt="Deskripsi proyek 1"><h3>FI</h3><span>2026</span></div>
-      <div class="card"><img class="thumb" src="images/proyek-2.jpg" alt="Deskripsi proyek 2"><h3>RO</h3><span>2026</span></div>
-      <div class="card"><img class="thumb" src="images/proyek-3.jpg" alt="Deskripsi proyek 3"><h3>NA</h3><span>2026</span></div>
-      <div class="card"><img class="thumb" src="images/proyek-4.jpg" alt="Deskripsi proyek 4"><h3>ZD</h3><span>2025</span></div>
-      <div class="card"><img class="thumb" src="images/proyek-5.jpg" alt="Deskripsi proyek 5"><h3>AN</h3><span>2026</span></div>
-      <div class="card"><img class="thumb" src="images/proyek-6.jpg" alt="Deskripsi proyek 6"><h3>ONE</h3><span>2025</span></div>
-    </div>
-  </section>
+    <section class="block" id="about">
+      <h2>About</h2>
+      <p class="about-text">A clean page, a first line, a last mark. MAGZI.z is a magazine of work that grows slowly: buildings observed and drawn, characters imagined, designs made with intent. Each issue is a step.</p>
+    </section>
 
-  <section id="About">
-    <h2>About</h2>
-    <p style="max-width:560px; color:var(--muted);">
-      A clean page, a first line, a last mark. MAGZI.z is a magazine of work that grows slowly: buildings observed and drawn, characters imagined, designs made with intent. Each issue is a step.
-    </p>
-  </section>
+    <section class="block" id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <div class="card"><img class="thumb" src="images/proyek-1.jpg" alt="Project 1"><h3>FI</h3><span>2026</span></div>
+        <div class="card"><img class="thumb" src="images/proyek-2.jpg" alt="Project 2"><h3>RO</h3><span>2026</span></div>
+        <div class="card"><img class="thumb" src="images/proyek-3.jpg" alt="Project 3"><h3>NA</h3><span>2026</span></div>
+        <div class="card"><img class="thumb" src="images/proyek-4.jpg" alt="Project 4"><h3>ZD</h3><span>2025</span></div>
+        <div class="card"><img class="thumb" src="images/proyek-5.jpg" alt="Project 5"><h3>AN 5</h3><span>2026</span></div>
+        <div class="card"><img class="thumb" src="images/proyek-6.jpg" alt="Project 6"><h3>ONE</h3><span>2025</span></div>
+      </div>
+    </section>
 
-  <section id="Contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:zdannone@gmail.com" style="color:var(--text);">zdannone@gmail.com</a></p>
-  </section>
+    <section class="block" id="contact">
+      <h2>Contact</h2>
+      <a class="contact-link" href="mailto:youremail@gmail.com">zdannone@gmail.com</a>
+    </section>
+  </main>
 
-  <footer>&copy; 2026 MAGZI.z</footer>
+  <footer>&copy; 2026 magzi.z</footer>
 
 </body>
 </html>
