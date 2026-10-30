@@ -39,6 +39,16 @@
       font-size: 14px;
     }
     nav a:hover { color: var(--text); }
+    {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #474444;
+}
+
+html {
+  scroll-padding-top: 80px;
+}
 
     /* Hero */
     .hero {
@@ -60,6 +70,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  bottom: 0;
   height: 100%;
   width: auto;
   max-width: 70%;
@@ -77,6 +88,14 @@
     aspect-ratio: auto;
     opacity: 0.35;
   }
+  .hero-img {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%),
+                      linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0%, black 50%),
+              linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-composite: intersect;
+}
 }
 
     /* Section umum */
