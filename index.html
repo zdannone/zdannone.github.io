@@ -4,36 +4,129 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>magzi.z</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
-  body {
-  background-color: #474444;
-  color: #FFF5C3;
-  font-family: Cormorant Garamond;
-  font-size: 30px;
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
-  box-sizing: border-box;
-}
-  h1 {
-    font-size: 150px;
-    letter-spacing: 7px;
-  }
-     img {
-  max-width: auto;
-  height: auto;
-  border-radius: 8px;
-}
-</style>
+    :root {
+      --bg: #474444;
+      --text: #FFF5C3;
+      --muted: #8a8a8a;
+      --line: #2a2a2a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 5vw;
+      border-bottom: 1px solid var(--line);
+    }
+    .logo { font-family: 'Instrument Serif', serif; font-size: 26px; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 14px;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 5vw;
+    }
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: clamp(48px, 10vw, 120px);
+      line-height: 1.05;
+    }
+    .hero p { color: var(--muted); max-width: 480px; margin-top: 24px; }
+
+    /* Section umum */
+    section { padding: 80px 5vw; border-top: 1px solid var(--line); }
+    section h2 {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400;
+      font-size: 36px;
+      margin-bottom: 32px;
+    }
+
+    /* Grid karya */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .thumb {
+      aspect-ratio: 4 / 3;
+      background: #222;
+      border-radius: 6px;
+    }
+    .card h3 { font-weight: 500; margin-top: 12px; }
+    .card span { color: var(--muted); font-size: 14px; }
+
+    /* Footer */
+    footer {
+      padding: 40px 5vw;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    footer a { color: var(--text); }
+  </style>
 </head>
 <body>
-  <h1>MAGZI.z</h1>
-  <img src="images/foto-1.jpg" alt="Deskripsi singkat gambar">
-  <p>A clean page, a first line, a final touch.</p>
+
+  <header>
+    <div class="logo">magzi.z</div>
+    <nav>
+      <a href="#karya">Karya</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Ruang, bentuk,<br>dan cerita.</h1>
+    <p>Portofolio magzi.z. Kumpulan karya dan proses belajar.</p>
+  </div>
+
+  <section id="karya">
+    <h2>Karya</h2>
+    <div class="grid">
+      <div class="card"><div class="thumb"></div><h3>Judul Proyek 1</h3><span>2026</span></div>
+      <div class="card"><div class="thumb"></div><h3>Judul Proyek 2</h3><span>2026</span></div>
+      <div class="card"><div class="thumb"></div><h3>Judul Proyek 3</h3><span>2026</span></div>
+    </div>
+  </section>
+
+  <section id="tentang">
+    <h2>Tentang</h2>
+    <p style="max-width:560px; color:var(--muted);">
+      Tulis perkenalan singkatmu di sini.
+    </p>
+  </section>
+
+  <section id="kontak">
+    <h2>Kontak</h2>
+    <p>Email: <a href="mailto:emailkamu@gmail.com" style="color:var(--text);">emailkamu@gmail.com</a></p>
+  </section>
+
+  <footer>&copy; 2026 magzi.z</footer>
+
 </body>
 </html>
