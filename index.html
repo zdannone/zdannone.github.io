@@ -203,7 +203,7 @@
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 14px;
-      text-position: center;
+      text-align: center;
     }
 
     /* ---------- Responsif ---------- */
@@ -228,22 +228,7 @@
 }
   </style>
 </head>
-<script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('site-menu');
 
-  function setOpen(open) {
-    menu.classList.toggle('open', open);
-    toggle.setAttribute('aria-expanded', open);
-  }
-
-  toggle.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
-  document.addEventListener('click', e => {
-    if (!menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
-  });
-</script>
 <body>
 
   <header class="site-header">
@@ -289,9 +274,22 @@
   </main>
 
   <footer>&copy; 2026 MAGZI.z</footer>
-<script>
+
+  <script>
     const toggle = document.getElementById('menu-toggle');
-    ...
+    const menu = document.getElementById('site-menu');
+
+    function setOpen(open) {
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open);
+    }
+
+    toggle.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+    document.addEventListener('click', e => {
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+    });
   </script>
 </body>
 </html>
