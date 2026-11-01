@@ -57,18 +57,45 @@
       -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
     }
-    .logo {
-      font-family: var(--serif);
-      font-size: 26px;
-      text-decoration: none;
-    }
-    .site-header nav a {
-      margin-left: 28px;
-      font-size: 15px;
-      text-decoration: none;
-      opacity: 0.7;
-    }
-    .site-header nav a:hover { opacity: 1; }
+   .logo {
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: var(--serif);
+  font-size: 26px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 5vw;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+.menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.menu a {
+  padding: 10px 24px;
+  font-family: var(--serif);
+  font-size: 24px;
+  text-decoration: none;
+  opacity: 0.75;
+}
+.menu a:hover { opacity: 1; }
 
     /* ---------- Hero layar penuh ---------- */
     .hero {
@@ -196,19 +223,38 @@
     @media (max-width: 600px) {
       .grid { grid-template-columns: 1fr; }
     }
+    @media (prefers-reduced-motion: reduce) {
+  .menu { transition: none; }
+}
   </style>
 </head>
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('site-menu');
 
+  function setOpen(open) {
+    menu.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open);
+  }
+
+  toggle.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+  document.addEventListener('click', e => {
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+  });
+</script>
 <body>
 
   <header class="site-header">
-    <a href="#top" class="logo">MAGZI.z</a>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <button class="logo" id="menu-toggle" aria-expanded="false" aria-controls="site-menu">magzi.z</button>
+  <nav class="menu" id="site-menu">
+    <a href="#top">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
   <main>
     <section class="hero" id="top">
