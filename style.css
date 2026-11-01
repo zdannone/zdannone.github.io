@@ -213,3 +213,14 @@
     @media (prefers-reduced-motion: reduce) {
   .menu { transition: none; }
 }
+.page {
+  padding: 140px 5vw 100px;
+  min-height: 80vh;
+}
+.page h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.1;
+  margin-bottom: 36px;
+}
