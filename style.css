@@ -152,29 +152,40 @@
 
     /* ---------- Projects: 3 per baris ---------- */
     .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    .card .thumb {
-      display: block;
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      object-position: center;   /* geser fokus foto di sini, mis. top / 30% 70% */
-      background: var(--placeholder);
-      border-radius: 4px;
-    }
-    .card h3 {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: 24px;
-      margin-top: 14px;
-    }
-    .card span {
-      color: var(--muted);
-      font-size: 14px;
-    }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.card .thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center;
+  background: var(--placeholder);
+  border-radius: 4px;
+}
+
+.card h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 24px;
+  margin-top: 14px;
+}
+
+.card span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
 
     /* ---------- Contact ---------- */
     .contact-link {
